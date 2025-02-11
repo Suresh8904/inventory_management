@@ -1,0 +1,94 @@
+<html>
+	<head>
+		<title>
+			Inventory
+		</title>
+	</head>
+	<body>
+		<h2>
+			Add New Product
+			<button type = "submit">
+				New Product
+			</button>
+		</h2>
+		<form id = "addNewProduct">
+			<label>
+				Product Description
+			</label>
+			<input type = "text" id = "productDescription" required>
+			<br>
+			<level>
+				Product Plu 
+			</level>
+			<input type = "number" id = "productPlu" required>
+			<br>
+			<level>
+				Barcode
+			<input type = "number" id = "barCode" required>
+			<br>
+			</level>
+			<level>
+				Expire date
+			<input type = "date" id = "expireDate" required>
+			<br>
+			</level>
+			<level>
+				Packing Weight (Kg)
+				<input type = "number" step = "0.01" id = "packingWeightKg" required>
+				<br>
+			</level>
+			<level>
+				packing Height (Cm)
+				<input type = "number" step = "0.01" id = "packingHeightCm" required>
+				<br>
+			</level>
+			<level>
+				Packing Width (Cm)
+				<input type = "number" step = "0.01" id = "packingWidthCm" required>
+				<br>
+				<level>
+				Packing Depth (Cm)
+				<input type = "number" step = "0.01" id = "packingDepthCm" required>
+				<br>
+			<level>
+				Frozen		
+				<input type = "text" id = "frozen" required>
+				<br>
+			</level>
+			<level>
+				Product Quantity
+				<input type = "number" id = "productQuantity" required>
+				<br>
+			</level>
+				</level>
+			<button type = "submit">
+				save
+			</button>
+		</for>
+		<script>
+			document.getElementById('addNewProduct').addEventListener('submit', function(event){
+				event.preventDefault();
+				const product = {
+				productDescription: document.getElementById('productDescription').value,
+				productPlu: document.getElementById('productPlu').value,
+				barCode: document.getElementById('barCode').value,
+				expireDate: document.getElementById('expireDate').value,
+				packingWeightKg: document.getElementById('packingWeightKg').value,
+				packingHeightCm: document.getElementById('packingHeightCm').value,
+				packingWidthCm: document.getElementById('packingWidthCm').value,
+				packingDepthCm: document.getElementById('packingDepthCm').value,
+				frozen: document.getElementById('frozen').value,
+				productQuantity: document.getElementById('productQuantity').value
+				};
+				fetch('http://localhost:8000/product/create',{
+					method: 'POST',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify(product)
+				}).then(response => response.json())
+				.then(data => alert("Succesfully saved"))
+				.catch(error => console.error('error', error));
+			});
+			
+		</script>
+	</body>
+</html>
