@@ -28,6 +28,7 @@ public class SupplierController {
 		supplier.setSupplierName(supplierRequest.getSupplierName());
 		supplier.setSupplierRegNr(supplierRequest.getSupplierRegNr());
 		supplier.setSupplierAddress(supplierRequest.getSupplierAddress());
+		supplier.setTelephoneNumber(supplierRequest.getTelephoneNumber());
 		return supplierService.saveSupplier(supplier);
 	}
 }

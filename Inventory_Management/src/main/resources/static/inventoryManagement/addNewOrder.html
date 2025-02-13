@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>
+			Add new Order
+		</title>
+	</head>
+	<body>
+		<h2>
+			Add New order
+		</h2>
+		<form id = "addNewOrder">
+			<label>
+				Order date
+			</label>
+			<input type = "date" id = "orderDate" required>
+			<br>
+			<level>
+				Supplier
+			</level>
+			<input type = "text" id = "orderSupplier" required>
+			<br>
+			<level>
+				Product
+			<input type = "text" id = "orderProduct" required>
+			<br>
+			</level>
+			<level>
+				Expected date
+			<input type = "date" id = "expectedDate" required>
+			<br>
+			</level>
+			<level>
+				Actual date
+				<input type = "date" id = "actualDate" required>
+				<br>
+			</level>
+			<level>
+				Completed order
+				<input type = "text" id = "completedOrder" required>
+				<br>
+			</level>
+			<button type = "submit">
+				save
+			</button>
+		</form>
+		<a href = "orders.html">
+		<button>Back</button>
+		</a>
+		<script>
+			document.getElementById('addNewOrder').addEventListener('submit', function(event){
+				event.preventDefault();
+				const order = {
+				productDescription: document.getElementById('orderDate').value,
+				productPlu: document.getElementById('orderSupplier').value,
+				barCode: document.getElementById('orderProduct').value,
+				expireDate: document.getElementById('expectedDate').value,
+				packingWeightKg: document.getElementById('actualDate').value,
+				packingHeightCm: document.getElementById('completedOrder').value,
+				};
+				fetch('http://localhost:8000/order/create',{
+					method: 'POST',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify(order)
+				}).then(response => response.json())
+				.then(data => alert("Succesfully saved"))
+				.catch(error => console.error('error', error));
+			});
+			
+		</script>
+	</body>
+</html>

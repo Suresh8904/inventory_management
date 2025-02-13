@@ -5,6 +5,8 @@ public class SuppleirRequest {
 	private int supplierRegNr;
 	private String supplierName;
 	private String supplierAddress;
+	private int telephoneNumber;
+	
 	public String getId() {
 		return id;
 	}
@@ -29,4 +31,11 @@ public class SuppleirRequest {
 	public void setSupplierAddress(String supplierAddress) {
 		this.supplierAddress = supplierAddress;
 	}
+	public int getTelephoneNumber() {
+		return telephoneNumber;
+	}
+	public void setTelephoneNumber(int telephoneNumber) {
+		this.telephoneNumber = telephoneNumber;
+	}
+	
 }

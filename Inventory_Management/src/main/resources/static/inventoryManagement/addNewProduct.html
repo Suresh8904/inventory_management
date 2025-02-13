@@ -7,9 +7,6 @@
 	<body>
 		<h2>
 			Add New Product
-			<button type = "submit">
-				New Product
-			</button>
 		</h2>
 		<form id = "addNewProduct">
 			<label>
@@ -64,7 +61,11 @@
 			<button type = "submit">
 				save
 			</button>
-		</for>
+			
+		</form>
+		<a href = "products.html">
+		<button>Back</button>
+		</a>
 		<script>
 			document.getElementById('addNewProduct').addEventListener('submit', function(event){
 				event.preventDefault();

@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>
+			Add new supplier
+		</title>
+	</head>
+	<body>
+		<h2>
+			Add New supplier
+		</h2>
+		<form id = "addNewSupplier">
+			<label>
+				Supplier name
+			</label>
+			<input type = "text" id = "supplierName" required>
+			<br>
+			<level>
+				Supplier RegNr
+			</level>
+			<input type = "number" id = "supplierRegNr" required>
+			<br>
+			<level>
+				Supplier Address
+			<input type = "text" id = "supplierAddress" required>
+			<br>
+			</level>
+			<lebel>
+				Telephone number
+				<input type = "number" id = "telephoneNumber" required>
+			</lebel>
+			<button type = "submit">
+				Save
+			</button>
+		</form>
+		<a href = "supplier.html">
+		<button>Back</button>
+		</a>
+		<script>
+			document.getElementById('addNewSupplier').addEventListener('submit', function(event){
+				event.preventDefault();
+				const suplier = {
+				supplierName: document.getElementById('supplierName').value,
+				supplierRegNr: document.getElementById('supplierRegNr').value,
+				supplierAddress: document.getElementById('supplierAddress').value,
+				telephoneNumber: document.getElementById('telephoneNumber').value
+				};
+				fetch('http://localhost:8000/supplier/create',{
+					method: 'POST',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify(suplier)
+				}).then(response => response.json())
+				.then(data => alert("Succesfully saved"))
+				.catch(error => console.error('error', error));
+			});
+			
+		</script>
+	</body>
+</html>
