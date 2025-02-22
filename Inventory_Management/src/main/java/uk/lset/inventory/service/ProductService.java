@@ -25,4 +25,12 @@ public class ProductService {
 	public List<Product> getAllProducts(Product product) {
 		return productRepository.findAll();
 	}
+	
+	public Iterable<Product> getAllProducts(){
+		return productRepository.findAll();
+	}
+	
+	public void deleteProduct(String id) {
+		productRepository.deleteById(id);
+	}
 }

@@ -1,0 +1,81 @@
+<html>
+	<head>
+		Product List
+	</head>
+	<body>
+		<h1>
+			Product List
+		</h1>
+		<table border = "1">
+			<thead>
+				<tr>
+				 <th>
+					id
+				 </th>
+				 <th>productDescription</th>
+				 <th>productPlu</th>
+				 <th>productQuantity</th>
+				 <th>Action</th>
+				</tr>
+			</thead>
+			<tbody id = "productTableBody">
+			</tbody>
+		</table>
+		<script>
+			async function fetchProduct() {
+				try{
+					let response = await fetch('/product/all');
+					let product = await response.json();
+					let tablebody = document.getElementById('productTableBody');
+					tablebody.innerHTML = '';
+					
+					product.forEach(product => {
+						let row = `<tr>
+							<td>
+								${product.id}
+							</td>
+							<td>
+								${product.productDescription}
+							</td>
+							<td>
+								${product.productPlu}
+							</td>
+							<td>
+								${product.productQuantity}
+							</td>
+							<td>
+								<button onclick = "deleteProduct('${product.id}')">
+									Delete
+							    </button>
+							</td>
+						</tr>`; 
+						tablebody.innerHTML += row;
+					});
+				} catch (error){
+					console.error("Error ". error);
+				}
+			}
+			async function deleteProduct(productId){
+				if(confirm("Do you want to delete? ")){
+					try {
+						let response = await fetch(`/product/delete/${productId}`, {
+		                method: 'DELETE'
+						});
+						if(response.ok){
+							alert("Product deleted")
+							document.getElementById(`row-${productId}`).remove();
+						} else {
+							alert("Error deleting");
+						}
+					}
+					catch(error){
+						console.error("Error ", error);
+					}
+				}
+			}
+			
+			
+			fetchProduct();
+		</script>
+	</body>
+</html>
