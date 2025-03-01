@@ -8,8 +8,8 @@ spec:
     app: inventory-management
   ports:
     - protocol: "TCP"
-      port: 8000 # The port that the service is running on in the cluster
-      targetPort: 8000 # The port exposed by the service
+      port: 8002 # The port that the service is running on in the cluster
+      targetPort: 8002 # The port exposed by the service
 ---
 apiVersion: apps/v1
 kind: Deployment # Kubernetes resource kind we are creating
@@ -30,7 +30,7 @@ spec:
           image: sureshk89/inventory-management:1.0.0 # Image that will be used to containers in the cluster
           imagePullPolicy: Always
           ports:
-            - containerPort: 8000 # The port that the container is running on in the cluster
+            - containerPort: 8002 # The port that the container is running on in the cluster
           env:      
             - name: MY_ENCRYPTION_KEY
               valueFrom:
